@@ -1,2 +1,2 @@
 # hadoop
-Big Data / Hadoop
+Big Data and Hadoop
