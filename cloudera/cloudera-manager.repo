@@ -1,0 +1,6 @@
+[cloudera-manager]
+name = Cloudera Manager, Version 5.3.8
+baseurl = http://repo.feduni.edu/repos/cloudera/cm5/redhat/6/x86_64/cm/5.3/
+gpgkey = http://repo.feduni.edu/repos/cloudera/cm5/redhat/6/x86_64/cm/RPM-GPG-KEY-cloudera
+gpgcheck = 1
+
