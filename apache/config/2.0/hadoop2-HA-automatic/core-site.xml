@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!-- Put site-specific property overrides in this file. -->
+<configuration>
+<property>
+<name>fs.defaultFS</name>
+<value>hdfs://mycluster</value>
+</property>
+<property>
+<name>hadoop.tmp.dir</name>
+<value>/home/hadoop/tmp</value>
+</property>
+<!-- Script for Includes/Excludes files 
+<property>
+<name>dfs.hosts</name><value>/home/hadoop/includes</value> <final>true</final>
+</property>
+<property>
+<name>dfs.hosts.exclude</name><value>/home/hadoop/excludes</value><final>true</final>
+</property>
+-->
+<!-- Script for rack awareness 
+<property>
+<name>topology.script.file.name</name><value>/home/hadoop/topology.sh</value>
+</property>
+-->
+</configuration>

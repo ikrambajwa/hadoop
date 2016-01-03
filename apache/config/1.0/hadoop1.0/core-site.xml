@@ -1,0 +1,9 @@
+
+<configuration>
+
+<property>
+<name>fs.default.name</name>
+<value>ah1nn.feduni.edu:9000</value>
+</property>
+
+</configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+<!--Properties for NameNode-->
+<property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:/data/namenode</value>
+</property>
+<property>
+<name>dfs.replication</name>
+<value>1</value>
+</property>
+<!--Properties for DataNode-->
+<property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:/data/datanode</value>
+</property>
+</configuration>
