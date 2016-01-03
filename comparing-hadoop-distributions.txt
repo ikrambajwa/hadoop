@@ -1,0 +1,9 @@
+https://www.experfy.com/blog/cloudera-vs-hortonworks-comparing-hadoop-distributions/
+
+Comparison of the top 3 Hadoop vendors
+https://s3.amazonaws.com/files.dezyre.com/images/blog/Top+6+Hadoop+Vendors+providing+Best+in+Class+Big+Data+Solutions_4.PNG
+
+?Top 6 Hadoop Vendors providing Big Data Solutions in Open Data Platform
+https://www.dezyre.com/article/-top-6-hadoop-vendors-providing-big-data-solutions-in-open-data-platform/93
+
+http://www.wipro.com/documents/Hadoop-vendor-distributions.pdf

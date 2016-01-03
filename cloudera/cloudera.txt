@@ -1,0 +1,90 @@
+#/etc/hosts
+192.168.1.100 c2cm.feduni.edu c2cm
+192.168.1.100 repo.feduni.edu repo
+192.168.1.101 c2nn.feduni.edu c2nn
+192.168.1.103 c2rm.feduni.edu c2rm
+192.168.1.104 c2dn1.feduni.edu c2dn1
+192.168.1.105 c2dn2.feduni.edu c2dn2
+192.168.1.106 c2dn3.feduni.edu c2dn3
+
+#Parcels Urls
+https://archive.cloudera.com/cdh5/parcels/{latest_supported}/
+https://archive.cloudera.com/cdh4/parcels/latest/
+https://archive.cloudera.com/impala/parcels/latest/
+https://archive.cloudera.com/search/parcels/latest/
+https://archive.cloudera.com/accumulo/parcels/1.4/
+https://archive.cloudera.com/accumulo-c5/parcels/latest/
+https://archive.cloudera.com/kafka/parcels/latest/
+https://archive.cloudera.com/navigator-keytrustee5/parcels/latest/
+https://archive.cloudera.com/spark/parcels/latest/
+https://archive.cloudera.com/sqoop-connectors/parcels/latest/
+
+http://repo.feduni.edu/repos/cloudera/cdh5/parcels/CDH-5.5.1.1/
+http://repo.feduni.edu/repos/cloudera/cdh4/parcels/CDH-4.7.1.1/
+http://repo.feduni.edu/repos/cloudera/impala/parcels/2.1.0.1/
+http://repo.feduni.edu/repos/cloudera/search/parcels/SOLR-1.3.0.1/
+http://repo.feduni.edu/repos/cloudera/accumulo/parcels/1.4.4.1/
+http://repo.feduni.edu/repos/cloudera/accumulo-c5/parcels/1.6.0.1/
+http://repo.feduni.edu/repos/cloudera/kafka/parcels/0.8.2.0/
+http://repo.feduni.edu/repos/cloudera/navigator-keytrustee5/parcels/5.5.0.1/
+http://repo.feduni.edu/repos/cloudera/spark/parcels/0.9.0.1/
+http://repo.feduni.edu/repos/cloudera/sqoop-connectors/parcels/
+
+http://repo.feduni.edu/repos/cloudera/cm5/redhat/6/x86_64/cm/5.5.1/RPMS/x86_64/
+http://repo.feduni.edu/repos/cloudera/cm5/redhat/6/x86_64/cm/RPM-GPG-KEY-cloudera
+
+#Find / Replace Text
+#Change Computer Name
+find /etc/sysconfig/network | xargs perl -pi -e 's/clouderatest/c2dn1/g'
+
+#Change IP Address
+find /etc/sysconfig/network-scripts/ifcfg-HostOnly | xargs perl -pi -e 's/192.168.1.100/192.168.1.100/g'
+
+#Configure MySQL for first Use.
+
+#Start Service
+service mysqld start
+
+#Set it on auto start at boot time
+chkconfig mysqld on
+
+mysqladmin -u root password '123456'
+mysqladmin -u root -h c2cm.feduni.edu password '123456'
+
+#Shell commands
+#Create below dbs for Cloudera Manager
+create database hive;
+create database amon;
+create database oozie_oozie_server;
+
+GRANT USAGE ON *.* to `root`@`%` IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'  WITH GRANT OPTION;
+GRANT USAGE ON *.* to `root`@`localhost` IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost'  WITH GRANT OPTION;
+GRANT USAGE ON *.* to `root`@`c2cm.feduni.edu` IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'c2cm.feduni.edu'  WITH GRANT OPTION;
+flush privileges;
+
+#install connector for java/Mysql
+yum install mysql-connector-java
+
+#check Cloudera Manager Status
+service cloudera-scm-server status
+
+#Uninstall Cloudera Manager
+/usr/share/cmf/uninstall-cloudera-manager.sh
+
+#Download Cloudera Manager Installer 5.3.x
+http://archive.cloudera.com/cm5/installer/5.3.8/cloudera-manager-installer.bin
+
+#Install Cloudera Manager with Local Repos
+./cloudera-manager-installer.bin skip_repo_package=1
+
+Now below url can be used on Use Parcels >> More Options link (Select Repository Screen).
+http://repo.feduni.edu/repos/cloudera/cdh5/parcels/5.3/
+
+Below url can be used in "Custom Repository" field on (Select Repository Screen).
+http://repo.feduni.edu/repos/cloudera/cm5/redhat/6/x86_64/cm/5.3/
+
+Below url can be used in "Custom GPG key URL" field on (Select Repository Screen).
+http://repo.feduni.edu/repos/cloudera/cm5/redhat/6/x86_64/cm/RPM-GPG-KEY-cloudera
